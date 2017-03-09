@@ -1,4 +1,7 @@
 let g:holylight_checker_path = expand('<sfile>:p:h:h').'/bin/holylight-checker'
+let g:holylight_day_colorscheme = get(g:, 'holylight_day_theme', 'PaperColor')
+let g:holylight_night_colorscheme = get(g:, 'holylight_night_theme', 'grb256')
+
 au CursorHold,BufNewFile,BufRead,VimEnter * nested silent! call HolyLight()
 
 function! HolyLight()
@@ -14,9 +17,26 @@ function! HolyLight()
     let g:holylight_threshold = 1000000
   endif
 
+  echo brightness
+
   if (brightness < g:holylight_threshold)
-    set background=dark
+    if &background !=# "dark"
+      set background=dark
+    endif
+
+    if !exists("g:colors_name") || g:colors_name !=# g:holylight_night_colorscheme
+      execute "colorscheme " . g:holylight_night_colorscheme
+    endif
   else
-    set background=light
+    if &background !=# "light"
+      set background=light
+    endif
+
+    if !exists("g:colors_name") || g:colors_name !=# g:holylight_day_colorscheme
+      execute "colorscheme " . g:holylight_day_colorscheme
+    endif
   endif
 endfunction
+
+
+command! HolyLightCheck call HolyLight()
