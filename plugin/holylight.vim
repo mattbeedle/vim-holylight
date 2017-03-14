@@ -2,7 +2,7 @@ let g:holylight_checker_path = expand('<sfile>:p:h:h').'/bin/holylight-checker'
 let g:holylight_day_colorscheme = get(g:, 'holylight_day_colorscheme', 'PaperColor')
 let g:holylight_night_colorscheme = get(g:, 'holylight_night_colorscheme', 'grb256')
 
-au CursorHold,BufNewFile,BufRead,VimEnter * nested silent! call HolyLight()
+au CursorHold,BufNewFile,BufRead,VimEnter,FocusLost,FocusGained * nested silent! call HolyLight()
 
 function! HolyLight()
   let brightness  = system(g:holylight_checker_path)
