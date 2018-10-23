@@ -24,7 +24,7 @@ function! HolyLight()
       set background=dark
     endif
 
-    if !exists("g:colors_name") || g:colors_name !=# g:holylight_night_colorscheme
+    if !exists("g:colors_name") || g:colors_name != g:holylight_night_colorscheme
       execute "colorscheme " . g:holylight_night_colorscheme
     endif
   else
@@ -32,7 +32,7 @@ function! HolyLight()
       set background=light
     endif
 
-    if !exists("g:colors_name") || g:colors_name !=# g:holylight_day_colorscheme
+    if !exists("g:colors_name") || g:colors_name != g:holylight_day_colorscheme
       execute "colorscheme " . g:holylight_day_colorscheme
     endif
   endif
